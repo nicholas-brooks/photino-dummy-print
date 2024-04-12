@@ -1,0 +1,16 @@
+.idea/
+.vs/
+.vscode/
+
+.DS_Store
+
+bin/
+obj/
+
+*.suo
+*.user
+*.useroscache
+*.sln.docstates
+
+*.tmp
+*.log

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="application/javascript">
+        function timestamp(d) {
+            return `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+        }
+
+        function addToMessageList(message) {
+            document.getElementById("logs").value += `${timestamp(new Date())} - ${message}\n`;
+        }
+        
+        function fakePrint() {
+            addToMessageList("Sending print request ...")
+            window.external.sendMessage("print");
+        }
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            window.external.receiveMessage((message) => {
+                addToMessageList(message);
+            });
+        })
+    </script>
+</head>
+<body>
+    <div>
+    <button onClick="fakePrint()">Print Document</button>
+    </div>
+
+    <div style="margin-top: 2rem">
+        <label>Logs</label>
+    </div>
+    <textarea id="logs" rows="20" cols="60"></textarea>
+
+</body>
+</html>
